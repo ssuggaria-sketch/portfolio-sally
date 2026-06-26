@@ -197,7 +197,7 @@ p{ margin:0 0 1em; }
   background-image:url('assets/img/architecture/hero_bg_render.jpg');
   background-size:cover;
   background-position:center;
-  opacity:0.30;
+  opacity:0.55;
   pointer-events:none;
   z-index:0;
 }
