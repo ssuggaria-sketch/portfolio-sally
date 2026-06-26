@@ -192,16 +192,27 @@ p{ margin:0 0 1em; }
   position:relative;
   overflow:hidden;
 }
+.hero-bg-image{
+  position:absolute; inset:0;
+  background-image:url('assets/img/architecture/hero_bg_render.jpg');
+  background-size:cover;
+  background-position:center;
+  opacity:0.16;
+  pointer-events:none;
+  z-index:0;
+}
 .hero::before{
   content:"";
   position:absolute; inset:0;
   background:
     radial-gradient(ellipse 60% 50% at 80% 10%, rgba(107,78,142,0.25), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(169,143,196,0.10), transparent 60%);
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(169,143,196,0.10), transparent 60%),
+    linear-gradient(180deg, rgba(36,31,53,0.55) 0%, rgba(36,31,53,0.85) 100%);
   pointer-events:none;
+  z-index:1;
 }
 .hero-inner{
-  position:relative; z-index:1;
+  position:relative; z-index:2;
   max-width:760px;
 }
 /* (hero logo stage removed — logo now appears alongside Architecture section) */
