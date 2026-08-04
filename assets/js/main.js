@@ -5,18 +5,22 @@
 	var toggle = document.querySelector(".nav-toggle");
 	var nav = document.querySelector(".main-nav");
 	if (toggle && nav) {
-		function toggleNav(e) {
-			e.preventDefault();
+		toggle.addEventListener("click", function (e) {
+			e.stopPropagation();
 			var open = nav.classList.toggle("is-open");
 			toggle.setAttribute("aria-expanded", open ? "true" : "false");
-		}
-		toggle.addEventListener("click", toggleNav);
-		toggle.addEventListener("touchend", toggleNav);
+		});
 		nav.querySelectorAll("a").forEach(function (a) {
 			a.addEventListener("click", function () {
 				nav.classList.remove("is-open");
 				toggle.setAttribute("aria-expanded", "false");
 			});
+		});
+		document.addEventListener("click", function (e) {
+			if (nav.classList.contains("is-open") && !nav.contains(e.target) && !toggle.contains(e.target)) {
+				nav.classList.remove("is-open");
+				toggle.setAttribute("aria-expanded", "false");
+			}
 		});
 	}
 
