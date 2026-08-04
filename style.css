@@ -212,6 +212,15 @@ p{ margin:0 0 1em; }
   position:relative;
   overflow:hidden;
 }
+.hero-bg-image{
+  position:absolute; inset:0;
+  background-image:url('assets/img/architecture/hero_bg_render.jpg');
+  background-size:cover;
+  background-position:center;
+  opacity:0.16;
+  pointer-events:none;
+  z-index:0;
+}
 .hero::before{
   content:"";
   position:absolute; inset:0;
@@ -221,7 +230,7 @@ p{ margin:0 0 1em; }
   pointer-events:none;
 }
 .hero-inner{
-  position:relative; z-index:1;
+  position:relative; z-index:2;
   max-width:760px;
 }
 /* (hero logo stage removed — logo now appears alongside Architecture section) */
