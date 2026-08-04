@@ -129,6 +129,7 @@ p{ margin:0 0 1em; }
   background:rgba(22,18,31,0.86);
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
+  pointer-events:auto;
 }
 .site-header .container{
   display:flex; align-items:center; justify-content:space-between;
@@ -166,6 +167,9 @@ p{ margin:0 0 1em; }
   display:none;
   background:none; border:none; color:var(--ink);
   font-size:1.6rem; line-height:1;
+  cursor:pointer;
+  pointer-events:auto;
+  -webkit-tap-highlight-color:transparent;
 }
 
 @media (max-width: 900px){
