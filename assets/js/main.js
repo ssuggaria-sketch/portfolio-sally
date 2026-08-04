@@ -16,12 +16,6 @@
 				toggle.setAttribute("aria-expanded", "false");
 			});
 		});
-		document.addEventListener("click", function (e) {
-			if (nav.classList.contains("is-open") && !nav.contains(e.target) && !toggle.contains(e.target)) {
-				nav.classList.remove("is-open");
-				toggle.setAttribute("aria-expanded", "false");
-			}
-		});
 	}
 
 	/* Scroll reveal */
