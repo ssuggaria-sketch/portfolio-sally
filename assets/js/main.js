@@ -1,19 +1,37 @@
 (function () {
 	"use strict";
 
-	/* Mobile nav toggle */
+	/* Mobile nav toggle - drop down from top */
 	var toggle = document.querySelector(".nav-toggle");
 	var nav = document.querySelector(".main-nav");
 	if (toggle && nav) {
 		toggle.addEventListener("click", function () {
-			var open = nav.classList.toggle("is-open");
-			toggle.setAttribute("aria-expanded", open ? "true" : "false");
+			var isOpen = nav.classList.contains("is-open");
+			if (isOpen) {
+				nav.classList.remove("is-open");
+				toggle.setAttribute("aria-expanded", "false");
+				toggle.innerHTML = "&#9776;";
+			} else {
+				nav.classList.add("is-open");
+				toggle.setAttribute("aria-expanded", "true");
+				toggle.innerHTML = "&times;";
+			}
 		});
 		nav.querySelectorAll("a").forEach(function (a) {
 			a.addEventListener("click", function () {
 				nav.classList.remove("is-open");
 				toggle.setAttribute("aria-expanded", "false");
+				toggle.innerHTML = "&#9776;";
 			});
+		});
+		document.addEventListener("click", function (e) {
+			if (nav.classList.contains("is-open") &&
+				!nav.contains(e.target) &&
+				!toggle.contains(e.target)) {
+				nav.classList.remove("is-open");
+				toggle.setAttribute("aria-expanded", "false");
+				toggle.innerHTML = "&#9776;";
+			}
 		});
 	}
 
@@ -66,16 +84,14 @@
 		});
 	}
 
-	/* Gallery filter (Photography page) */
+	/* Gallery filter */
 	var filterBar = document.querySelector(".filter-bar");
 	if (filterBar) {
 		var buttons = filterBar.querySelectorAll("button");
 		var items = document.querySelectorAll("[data-category]");
 		buttons.forEach(function (btn) {
 			btn.addEventListener("click", function () {
-				buttons.forEach(function (b) {
-					b.classList.remove("is-active");
-				});
+				buttons.forEach(function (b) { b.classList.remove("is-active"); });
 				btn.classList.add("is-active");
 				var filter = btn.getAttribute("data-filter");
 				items.forEach(function (item) {
@@ -89,7 +105,7 @@
 		});
 	}
 
-	/* Pause/play videos on hover for masonry video tiles, autoplay muted on view for hero */
+	/* Autoplay videos in view */
 	document.querySelectorAll("video[data-autoplay-inview]").forEach(function (vid) {
 		if ("IntersectionObserver" in window) {
 			var vio = new IntersectionObserver(
