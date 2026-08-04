@@ -175,8 +175,8 @@ p{ margin:0 0 1em; }
     transform:translateX(100%);
     transition:transform .3s ease;
     overflow-y:auto;
+    z-index:200;
   }
-  z-index:200;
   .main-nav.is-open{ transform:translateX(0); }
   .main-nav ul{ flex-direction:column; gap:0; padding:1rem 0; }
   .main-nav a{ display:block; padding:16px var(--gutter); border-bottom:1px solid var(--line); }
