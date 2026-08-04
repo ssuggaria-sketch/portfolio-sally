@@ -2,6 +2,23 @@
 	"use strict";
 
 	/* Mobile nav toggle */
+
+	/* DEBUG - remove after testing */
+	var dbg = document.createElement('div');
+	dbg.id = 'nav-debug';
+	dbg.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#000;color:#0f0;font-size:11px;padding:6px;z-index:9999;font-family:monospace;max-height:100px;overflow-y:auto;';
+	dbg.innerHTML = 'Debug ready<br>';
+	document.body.appendChild(dbg);
+	function dbgLog(msg){ dbg.innerHTML += msg + '<br>'; dbg.scrollTop = dbg.scrollHeight; }
+
+	var toggle = document.querySelector(".nav-toggle");
+	var nav = document.querySelector(".main-nav");
+	dbgLog('toggle:' + !!toggle + ' nav:' + !!nav + ' w:' + window.innerWidth);
+	if(toggle){ 
+		var r = toggle.getBoundingClientRect();
+		dbgLog('btn pos: t:'+Math.round(r.top)+' l:'+Math.round(r.left)+' w:'+Math.round(r.width)+' h:'+Math.round(r.height));
+	}
+
 	var toggle = document.querySelector(".nav-toggle");
 	var nav = document.querySelector(".main-nav");
 	if (toggle && nav) {
@@ -9,6 +26,7 @@
 			e.stopPropagation();
 			var open = nav.classList.toggle("is-open");
 			toggle.setAttribute("aria-expanded", open ? "true" : "false");
+			if(window.dbgLog) dbgLog('CLICK! open:' + open + ' has-is-open:' + nav.classList.contains("is-open"));
 		});
 		nav.querySelectorAll("a").forEach(function (a) {
 			a.addEventListener("click", function () {
