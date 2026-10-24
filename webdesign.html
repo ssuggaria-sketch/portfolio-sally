@@ -160,6 +160,7 @@
   overflow:hidden; background:var(--panel);
   aspect-ratio:1 / 1;
   position:relative;
+  cursor:zoom-in;
 }
 .food-grid__item.wide{
   grid-column:span 2;
@@ -500,19 +501,19 @@
       </div>
 
       <div class="food-grid reveal">
-        <div class="food-grid__item wide">
+        <div class="food-grid__item wide" onclick="openLightbox(this)">
           <img src="assets/img/clients/burger.jpg" alt="Paradise Burger — avocado, cheddar, pickled onion, fries" loading="lazy">
         </div>
-        <div class="food-grid__item">
+        <div class="food-grid__item" onclick="openLightbox(this)">
           <img src="assets/img/clients/chilli1.jpg" alt="Chilli con carne bowl with nachos" loading="lazy">
         </div>
-        <div class="food-grid__item">
+        <div class="food-grid__item" onclick="openLightbox(this)">
           <img src="assets/img/clients/nachos1.jpg" alt="Nachos with avocado, pickled onion and lime" loading="lazy">
         </div>
-        <div class="food-grid__item">
+        <div class="food-grid__item" onclick="openLightbox(this)">
           <img src="assets/img/clients/nachos2.jpg" alt="Nachos close-up, dark moody shot" loading="lazy">
         </div>
-        <div class="food-grid__item wide">
+        <div class="food-grid__item wide" onclick="openLightbox(this)">
           <img src="assets/img/clients/chilli2.jpg" alt="Chilli con carne with jalapeños close-up" loading="lazy">
         </div>
       </div>
@@ -588,5 +589,26 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+
+<!-- Lightbox -->
+<div id="lightbox" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);cursor:zoom-out;align-items:center;justify-content:center;" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:92vh;object-fit:contain;border-radius:4px;box-shadow:0 8px 60px rgba(0,0,0,.6);">
+  <button onclick="closeLightbox()" style="position:fixed;top:20px;right:24px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1;opacity:.8;">✕</button>
+</div>
+<script>
+function openLightbox(el){
+  var img = el.querySelector('img');
+  var lb = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox-img').alt = img.alt;
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLightbox(); });
+</script>
 </body>
 </html>
